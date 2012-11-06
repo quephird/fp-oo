@@ -79,4 +79,25 @@
 ; Both calls above succeed and return a new Point; this is because send-to
 ; evals the symbol 'Point which will now be bound to the new definition.
 
+; Exercise 4
 
+(def apply-message-to
+  (fn [clazz instance msg args]
+    (let [method (msg (:__instance_methods__ clazz))]
+      (if (not (nil? method))
+        (apply method instance args)
+        (msg instance))
+      )
+    )
+  )
+
+(println (send-to a-point :x))
+(println (send-to a-point :y))
+(println (send-to a-point :origin))
+
+; Exercise 5
+
+(println (send-to a-point :some-unknown-message))
+
+; This is pretty undesirable; we should be checking for the existence
+; of the instance variable as well and raise an error if none exists.
