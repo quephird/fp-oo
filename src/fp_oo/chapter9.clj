@@ -17,7 +17,7 @@
 (println (separate-uber odd? (range 10)))
 
 
-; Exercise 9.4.3
+; Exercise 9.4.4
 
 (def myfun
   (let [x 3]
